@@ -15,7 +15,7 @@ class RoundedButton extends StatelessWidget {
       this.tailing,
       this.radius = 24,
       this.color = const Color(0xff134E4A),
-      this.textColor = const Color(0xffffffff),
+      this.textColor,
       this.shrinkWrap = false,
       this.contentPadding = 0,
       this.buttonType = ButtonType.solid,
@@ -26,7 +26,7 @@ class RoundedButton extends StatelessWidget {
   final Widget? leading;
   final Widget? tailing;
   final Color color;
-  final Color textColor;
+  final Color? textColor;
   final double radius;
   final bool shrinkWrap;
   final double contentPadding;
@@ -61,7 +61,10 @@ class RoundedButton extends StatelessWidget {
                   textScaleFactor ?? SizeConfig.blockSizeHorizontal / 4,
               style: (textStyle ?? AppTheme.appTextTheme.regulerNoneMedium)
                   ?.copyWith(
-                color: textColor,
+                color: textColor ??
+                    (buttonType == ButtonType.solid
+                        ? const Color(0xffffffff)
+                        : const Color(0xff000000)),
               ),
             ),
             if (tailing != null)
