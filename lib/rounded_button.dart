@@ -14,7 +14,7 @@ class RoundedButton extends StatelessWidget {
       this.leading,
       this.tailing,
       this.radius = 24,
-      this.color = const Color(0xff134E4A),
+      this.color,
       this.textColor,
       this.shrinkWrap = false,
       this.contentPadding = 0,
@@ -25,7 +25,7 @@ class RoundedButton extends StatelessWidget {
   final String text;
   final Widget? leading;
   final Widget? tailing;
-  final Color color;
+  final Color? color;
   final Color? textColor;
   final double radius;
   final bool shrinkWrap;
@@ -42,11 +42,13 @@ class RoundedButton extends StatelessWidget {
               RoundedRectangleBorder(
                   side: buttonType == ButtonType.solid
                       ? BorderSide.none
-                      : BorderSide(color: color),
+                      : BorderSide(color: color ?? const Color(0xff14B8A6)),
                   borderRadius: BorderRadius.circular(radius))),
           elevation: MaterialStateProperty.resolveWith((states) => 0),
           backgroundColor: MaterialStateColor.resolveWith((states) =>
-              buttonType == ButtonType.solid ? color : Colors.white)),
+              buttonType == ButtonType.solid
+                  ? color ?? const Color(0xff134E4A)
+                  : Colors.white)),
       onPressed: onPressed,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 0, horizontal: contentPadding),
@@ -64,7 +66,7 @@ class RoundedButton extends StatelessWidget {
                 color: textColor ??
                     (buttonType == ButtonType.solid
                         ? const Color(0xffffffff)
-                        : const Color(0xff000000)),
+                        : const Color(0xff14B8A6)),
               ),
             ),
             if (tailing != null)
